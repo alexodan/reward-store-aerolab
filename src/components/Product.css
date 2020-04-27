@@ -1,0 +1,115 @@
+.product {
+  cursor: pointer;
+  max-width: 276px;
+  height: 276px;
+  padding: 14px 24px;
+  position: relative;
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(138, 138, 138, 0.35);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(138, 138, 138, 0.35);
+  box-shadow: 2px 2px 5px 0px rgba(138, 138, 138, 0.35);
+  transition: .3s;
+  transform-origin: center;
+  transition-timing-function: ease-out;
+}
+
+.selected {
+  transform: scale(1.1, 1.1);
+}
+
+.redeem {
+  cursor: default;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 276px;
+  height: 276px;
+  z-index: 1;
+  background-image: linear-gradient(-180deg, #0ad2fabe 0%, #0ad2fabe 100%);
+}
+
+.redeem-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.redeem-price {
+  color: #ffffff;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.redeem-price img {
+  margin-left: 10px;
+}
+
+.redeem-btn {
+  cursor: pointer;
+  background-color: #ffffff;
+  width: 228px;
+  height: 42px;
+  color: #616161;
+  margin: 0 auto;
+  display: block;
+  font-size: 18px;
+  border-radius: 20px;
+  border: none;
+}
+
+.product-category {
+  color: #a3a3a3;
+  letter-spacing: -0.04px;
+  font-weight: lighter;
+  margin: 15px 0px 5px 0px;
+}
+
+.product-name {
+  color: #616161;
+  margin: 0;
+}
+
+.product-image {
+  width: 100%;
+}
+
+hr {
+  height: 1px;
+  color: #d9d9d9;
+  background-color: #d9d9d9;
+  border: none;
+}
+
+.buy-blue-icon {
+  cursor: pointer;
+  z-index: 2;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.need-more-coins {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  opacity: 0.8;
+  background: #616161;
+  border-radius: 100px;
+  width: 142px;
+  height: 42px;
+  justify-content: center;
+}
+
+.need-more-coins span {
+  font-size: 14px;
+  color: #ffffff;
+  text-align: right;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 200;
+  margin-right: 5px;
+}

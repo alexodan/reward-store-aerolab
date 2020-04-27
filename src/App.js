@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
+import Banner from './components/Banner';
+import Products from './components/Products';
+
+import { getProducts, getUser } from './API';
+
+const TOKEN =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWE2ZTAyMzBhZjljMzAwNmRhMTZiZTYiLCJpYXQiOjE1ODc5OTQ2NTl9.lhNb8ghtFFdSEcZldZf2GqiGsygtl1YluPVTezOKTT0';
+
 function App() {
+  const [ products, setProducts ] = useState([]);
+  const [ user, setUser ] = useState(null);
+
+  useEffect(() => {
+    getProducts().then((products) => setProducts(products));
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    getUser().then((user) => setUser(user));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <UserHeader coins={user.points} history={user.history} /> */}
+      <Banner title="Electronics" />
+      <Products products={products} />
     </div>
   );
 }

@@ -1,0 +1,22 @@
+.Banner {
+  position: relative;
+  height: 412px;
+  width: 100%;
+  background-image: url('/images/header-x1.png');
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+
+  /* background-size: 80% 112%;
+  background-position: right 0px;
+  background-color: rgb(10, 219, 255); */
+}
+
+.title {
+  color: #ffffff;
+  font-family: 'Source Sans Pro', sans-serif;
+  position: absolute;
+  top: 230px;
+  left: 150px;
+  font-size: 64px;
+}
