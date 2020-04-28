@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import buyBlueIcon from '../assets/buy-blue.svg';
 import coinIcon from '../assets/coin.svg';
 
 import './Product.css';
 
-const Product = ({ name, category, price, imageSrc, coins }) => {
+const Product = forwardRef(({ name, category, price, imageSrc, coins }, ref) => {
   const [ redeemView, setRedeemView ] = useState(false);
 
   const toggleRedeem = () => {
     setRedeemView(!redeemView);
   };
 
+  const redeemProduct = (e) => {
+    e.stopPropagation();
+    console.log('Redeeming(?');
+  };
+
   return (
-    <div className={`product ${redeemView ? 'selected' : ''}`} onClick={toggleRedeem}>
+    <div className={`product ${redeemView ? 'selected' : ''}`} onClick={toggleRedeem} ref={ref}>
       {coins > price ? (
         <img className="buy-blue-icon" src={buyBlueIcon} alt="buy" />
       ) : (
@@ -32,12 +37,14 @@ const Product = ({ name, category, price, imageSrc, coins }) => {
               <span>{price}</span>
               <img src={coinIcon} alt="coin" />
             </div>
-            <button className="redeem-btn">Redeem now</button>
+            <button className="redeem-btn" onClick={redeemProduct}>
+              Redeem now
+            </button>
           </div>
         </div>
       ) : null}
     </div>
   );
-};
+});
 
 export default Product;

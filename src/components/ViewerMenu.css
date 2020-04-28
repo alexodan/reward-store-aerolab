@@ -1,0 +1,23 @@
+span {
+  font-size: 24px;
+  color: #a3a3a3;
+  line-height: 48px;
+  text-align: left;
+}
+
+.btn {
+  border: none;
+  /* font-family: 'Source Sans Pro'; */
+  font-size: 24px;
+  color: #a3a3a3;
+  background: #ededed;
+  border-radius: 100px;
+  width: 178px;
+  height: 48px;
+  outline: none;
+}
+
+.active {
+  color: #ffffff;
+  background-color: #0ad2fabe;
+}

@@ -43,6 +43,10 @@
   margin-bottom: 10px;
 }
 
+.redeem-price span {
+  color: #ffffff;
+}
+
 .redeem-price img {
   margin-left: 10px;
 }
