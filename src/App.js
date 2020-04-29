@@ -5,7 +5,7 @@ import Banner from './components/Banner';
 import Products from './components/Products';
 import ViewerMenu from './components/ViewerMenu';
 
-import { getProducts, getUser } from './API';
+import { getUser } from './API';
 
 // const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWE2ZTAyMzBhZjljMzAwNmRhMTZiZTYiLCJpYXQiOjE1ODc5OTQ2NTl9.lhNb8ghtFFdSEcZldZf2GqiGsygtl1YluPVTezOKTT0';
 
@@ -25,20 +25,10 @@ function sortFactory(sortOption) {
 function App() {
   // TODO: move this to another file with constants: MOST_RECENT, LOWEST_PRICE, HIGHEST_PRICE
   const sortOptions = [ 'most-recent', 'lowest-price', 'highest-price' ];
-  const [ products, setProducts ] = useState([]);
-  const [ user, setUser ] = useState(null);
-  const [ sort, setSort ] = useState('most-recent');
 
-  useEffect(
-    () => {
-      getProducts().then((products) => {
-        const sortBy = sortFactory(sort);
-        setProducts(products.sort(sortBy));
-      });
-      return () => {};
-    },
-    [ sort ]
-  );
+  const [ user, setUser ] = useState(null);
+  const [ sort, setSort ] = useState(sortFactory);
+  // const sort = sortFactory('most-recent');
 
   useEffect(() => {
     getUser().then((user) => setUser(user));
@@ -55,7 +45,7 @@ function App() {
       <Banner title="Electronics" />
       <div className="container">
         <ViewerMenu sortBy={sort} sortOptions={sortOptions} changeSort={changeSort} />
-        <Products products={products} />
+        <Products sortBy={sort} />
       </div>
     </div>
   );

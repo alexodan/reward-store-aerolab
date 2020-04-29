@@ -13,7 +13,6 @@ const Product = forwardRef(({ name, category, price, imageSrc, coins }, ref) => 
 
   const redeemProduct = (e) => {
     e.stopPropagation();
-    console.log('Redeeming(?');
   };
 
   return (
