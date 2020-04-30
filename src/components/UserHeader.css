@@ -1,0 +1,36 @@
+.UserHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 40px;
+}
+
+.user-data {
+  display: flex;
+  align-items: center;
+}
+
+.user-data .user {
+  font-size: 24px;
+  color: #616161;
+  line-height: 48px;
+  margin-right: 20px;
+}
+
+.user-data .wallet {
+  display: flex;
+  background: #ededed;
+  border-radius: 100px;
+  width: 108px;
+  height: 48px;
+  padding: 15px;
+  align-items: center;
+}
+
+.user-data .wallet span {
+  font-size: 24px;
+  line-height: 48px;
+  color: #616161;
+  text-align: right;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin-right: 5px;
+}

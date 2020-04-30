@@ -1,8 +1,15 @@
-span {
+.ViewerMenu {
+  margin: 50px 0 30px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.sort-by {
   font-size: 24px;
   color: #a3a3a3;
   line-height: 48px;
   text-align: left;
+  margin-right: 20px;
 }
 
 .btn {
@@ -15,6 +22,8 @@ span {
   width: 178px;
   height: 48px;
   outline: none;
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 .active {
