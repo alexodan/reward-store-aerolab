@@ -6,6 +6,7 @@ import './Product.css';
 
 const Product = forwardRef(({ name, category, price, imageSrc, coins }, ref) => {
   const [ redeemView, setRedeemView ] = useState(false);
+  const canRedeem = coins > price;
 
   const toggleRedeem = () => {
     setRedeemView(!redeemView);
@@ -18,7 +19,7 @@ const Product = forwardRef(({ name, category, price, imageSrc, coins }, ref) => 
 
   return (
     <div className={`product ${redeemView ? 'selected' : ''}`} onClick={toggleRedeem} ref={ref}>
-      {coins > price ? (
+      {canRedeem ? (
         <img className="buy-blue-icon" src={buyBlueIcon} alt="buy" />
       ) : (
         <div className="need-more-coins">
@@ -37,7 +38,7 @@ const Product = forwardRef(({ name, category, price, imageSrc, coins }, ref) => 
               <span>{price}</span>
               <img src={coinIcon} alt="coin" />
             </div>
-            <button className="redeem-btn" onClick={redeemProduct}>
+            <button className="redeem-btn" onClick={redeemProduct} disabled={!canRedeem}>
               Redeem now
             </button>
           </div>

@@ -37,7 +37,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getUser().then((user) => setUser(user));
+    getUser().then((user) => {
+      setUser(user);
+    });
   }, []);
 
   const changeSort = (sortSelected) => {
@@ -48,7 +50,7 @@ function App() {
 
   return (
     <div className="App">
-      <UserHeader user={user.name} coins={user.points} history={user.history} />
+      <UserHeader user={user.name} coins={user.points} history={user.redeemHistory} />
       <Banner title="Electronics" />
       <div className="container">
         <ViewerMenu sortBy={sortCriteria} sortOptions={sortOptions} changeSort={changeSort} />

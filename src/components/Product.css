@@ -64,6 +64,12 @@
   border: none;
 }
 
+.redeem-btn:disabled {
+  color: #ffffff;
+  background-color: #8f8f8f;
+  cursor: not-allowed;
+}
+
 .product-category {
   color: #a3a3a3;
   letter-spacing: -0.04px;

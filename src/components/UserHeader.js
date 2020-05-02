@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './UserHeader.css';
+import ProductHistory from './ProductHistory';
+
 import coinIcon from '../assets/coin.svg';
 
-const UserHeader = ({ user, coins, history } = {}) => {
+const UserHeader = ({ user, coins, historyProducts } = {}) => {
+  const [ showHistory, setShowHistory ] = useState(false);
+
+  const toggleShowHistory = () => {
+    setShowHistory(!showHistory);
+  };
+
   return (
     <div className="UserHeader">
-      <div className="logo">
-        <img src="images/aerolab-logo.svg" />
-      </div>
-      <div className="user-data">
-        <span className="user">{user}</span>
-        <div className="wallet">
-          <span>{coins}</span>
-          <img src={coinIcon} alt="coins" />
+      <div className="header">
+        <div className="logo">
+          <img src="images/aerolab-logo.svg" alt="aerolab logo" />
         </div>
+        <div className="user-data">
+          <span className="user">{user}</span>
+          <span className="show-history" onClick={() => toggleShowHistory()}>
+            history
+          </span>
+          <div className="wallet">
+            <span>{coins}</span>
+            <img src={coinIcon} alt="coins" />
+          </div>
+        </div>
+      </div>
+      <div className={`history ${showHistory ? 'active' : ''}`}>
+        {historyProducts &&
+          historyProducts.map(({ name, category, price }) => {
+            return <ProductHistory name={name} category={category} price={price} />;
+          })}
       </div>
     </div>
   );

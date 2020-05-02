@@ -1,5 +1,10 @@
 .UserHeader {
   display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
   justify-content: space-between;
   padding: 15px 40px;
 }
@@ -33,4 +38,18 @@
   text-align: right;
   font-family: 'Source Sans Pro', sans-serif;
   margin-right: 5px;
+}
+
+.history {
+  background-color: #ffffff;
+  border-top: 1px solid #0ad2fabe;
+  transition: max-height 1s;
+  overflow: hidden;
+  max-height: 0;
+  color: black;
+}
+
+.history.active {
+  max-height: 300px;
+  transition: max-height 1s;
 }
