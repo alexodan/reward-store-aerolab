@@ -1,15 +1,15 @@
-import React, { useState, forwardRef } from 'react';
+import React from 'react';
 import buyBlueIcon from '../assets/buy-blue.svg';
 import coinIcon from '../assets/coin.svg';
 
 import './Product.css';
 
-const Product = forwardRef(({ name, category, price, imageSrc, coins }, ref) => {
-  const [ redeemView, setRedeemView ] = useState(false);
+const Product = ({ id, name, category, price, imageSrc, coins, selected, toggleSelected }) => {
   const canRedeem = coins > price;
 
-  const toggleRedeem = () => {
-    setRedeemView(!redeemView);
+  const toggleRedeem = (productId) => {
+    toggleSelected(id);
+    console.log(`ID: ${productId} ${id}`)
   };
 
   const redeemProduct = (e) => {
@@ -18,7 +18,7 @@ const Product = forwardRef(({ name, category, price, imageSrc, coins }, ref) => 
   };
 
   return (
-    <div className={`product ${redeemView ? 'selected' : ''}`} onClick={toggleRedeem} ref={ref}>
+    <div className={`product ${selected ? 'selected' : ''}`} onClick={() => toggleRedeem(id)}>
       {canRedeem ? (
         <img className="buy-blue-icon" src={buyBlueIcon} alt="buy" />
       ) : (
@@ -31,7 +31,7 @@ const Product = forwardRef(({ name, category, price, imageSrc, coins }, ref) => 
       <hr />
       <h4 className="product-category">{category}</h4>
       <p className="product-name">{name}</p>
-      {redeemView ? (
+      {selected ? (
         <div className="redeem">
           <div className="redeem-container">
             <div className="redeem-price">
@@ -46,6 +46,6 @@ const Product = forwardRef(({ name, category, price, imageSrc, coins }, ref) => 
       ) : null}
     </div>
   );
-});
+};
 
 export default Product;

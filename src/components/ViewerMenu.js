@@ -1,9 +1,9 @@
 import React from 'react';
 import './ViewerMenu.css';
-import { pipe, map, split, toCamelCase, join, trace } from '../utils';
+import { pipe, map, split, toCamelCase, join } from '../utils';
 
 const ViewerMenu = ({ sortBy, sortOptions, changeSort }) => {
-  const displayName = pipe(split('-'), map(toCamelCase), trace('after map'), join(' '));
+  const displayName = pipe(split('-'), map(toCamelCase), join(' '));
 
   return (
     <div className="ViewerMenu">
