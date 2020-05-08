@@ -8,8 +8,7 @@ const Product = ({ id, name, category, price, imageSrc, coins, selected, toggleS
   const canRedeem = coins > price;
 
   const toggleRedeem = (productId) => {
-    toggleSelected(id);
-    console.log(`ID: ${productId} ${id}`)
+    toggleSelected(productId);
   };
 
   const redeemProduct = (e) => {

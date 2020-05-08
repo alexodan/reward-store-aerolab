@@ -6,7 +6,7 @@ const Products = ({ products }) => {
   const [productSelectedId, setProductSelectedId] = useState(null);
 
   const onProductSelected = (id) => {
-    setProductSelectedId(id);
+    setProductSelectedId(productSelectedId === null ? id : null);
   };
 
   return (
