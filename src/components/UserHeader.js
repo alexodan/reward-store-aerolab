@@ -19,8 +19,8 @@ const UserHeader = ({ user, coins, historyProducts } = {}) => {
         </div>
         <div className="user-data">
           <span className="user">{user}</span>
-          <span className="show-history" onClick={() => toggleShowHistory()}>
-            history
+          <span className="show-history" onClick={() => toggleShowHistory()} role="img" aria-label="history">
+            ⌛
           </span>
           <div className="wallet">
             <span>{coins}</span>
@@ -30,8 +30,8 @@ const UserHeader = ({ user, coins, historyProducts } = {}) => {
       </div>
       <div className={`history ${showHistory ? 'active' : ''}`}>
         {historyProducts &&
-          historyProducts.map(({ name, category, price }) => {
-            return <ProductHistory name={name} category={category} price={price} />;
+          historyProducts.map(({ name, category, price, imageUrl }) => {
+            return <ProductHistory key={name} name={name} category={category} price={price} imageUrl={imageUrl} />;
           })}
       </div>
     </div>

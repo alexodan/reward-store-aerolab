@@ -4,16 +4,18 @@ import coinIcon from '../assets/coin.svg';
 
 import './Product.css';
 
-const Product = ({ id, name, category, price, imageSrc, coins, selected, toggleSelected }) => {
+const Product = ({ id, name, category, price, imageUrl, coins, selected, toggleSelected, onRedeemProduct }) => {
   const canRedeem = coins > price;
 
   const toggleRedeem = (productId) => {
     toggleSelected(productId);
   };
 
-  const redeemProduct = (e) => {
+  const redeem = (e) => {
     e.stopPropagation();
-    console.log('Redeeming(?');
+    if (coins > price) {
+      onRedeemProduct(id);
+    }
   };
 
   return (
@@ -26,7 +28,7 @@ const Product = ({ id, name, category, price, imageSrc, coins, selected, toggleS
           <img src={coinIcon} alt="coin" />
         </div>
       )}
-      <img className="product-image" src={imageSrc} alt={name} />
+      <img className="product-image" src={imageUrl} alt={name} />
       <hr />
       <h4 className="product-category">{category}</h4>
       <p className="product-name">{name}</p>
@@ -37,7 +39,7 @@ const Product = ({ id, name, category, price, imageSrc, coins, selected, toggleS
               <span>{price}</span>
               <img src={coinIcon} alt="coin" />
             </div>
-            <button className="redeem-btn" onClick={redeemProduct} disabled={!canRedeem}>
+            <button className="redeem-btn" onClick={redeem} disabled={!canRedeem}>
               Redeem now
             </button>
           </div>

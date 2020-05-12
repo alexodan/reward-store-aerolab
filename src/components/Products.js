@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import Product from "./Product";
-import "./Products.css";
+import React, { useState } from 'react';
+import Product from './Product';
+import './Products.css';
 
-const Products = ({ products }) => {
-  const [productSelectedId, setProductSelectedId] = useState(null);
+const Products = ({ availableCoins, products, redeemProduct }) => {
+  const [ productSelectedId, setProductSelectedId ] = useState(null);
 
   const onProductSelected = (id) => {
     setProductSelectedId(productSelectedId === null ? id : null);
+  };
+
+  const redeem = (id) => {
+    redeemProduct(id);
   };
 
   return (
@@ -19,10 +23,11 @@ const Products = ({ products }) => {
             name={name}
             price={cost}
             category={category}
-            imageSrc={img.url}
-            coins={1000}
+            imageUrl={img.url}
+            coins={availableCoins}
             selected={_id === productSelectedId}
             toggleSelected={onProductSelected}
+            onRedeemProduct={redeem}
           />
         );
       })}

@@ -8,9 +8,6 @@ import UserHeader from './components/UserHeader';
 
 import { getProducts, getUser } from './API';
 
-// https://aerolab.co/coding-challenge-instructions?utm_campaign=Coding%20Challenge
-// const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWE2ZTAyMzBhZjljMzAwNmRhMTZiZTYiLCJpYXQiOjE1ODc5OTQ2NTl9.lhNb8ghtFFdSEcZldZf2GqiGsygtl1YluPVTezOKTT0';
-
 function sortFactory(sortOption) {
   switch (sortOption) {
     case 'most-recent':
@@ -25,21 +22,17 @@ function sortFactory(sortOption) {
 }
 
 function App() {
-  // TODO: move this to another file with constants: MOST_RECENT, LOWEST_PRICE, HIGHEST_PRICE
   const sortOptions = [ 'most-recent', 'lowest-price', 'highest-price' ];
   const [ user, setUser ] = useState({});
   const [ products, setProducts ] = useState([]);
   const [ sortCriteria, setSortCriteria ] = useState('most-recent');
 
   useEffect(() => {
-    getProducts().then((products) => setProducts(products));
-    return () => {};
+    getProducts().then(setProducts);
   }, []);
 
   useEffect(() => {
-    getUser().then((user) => {
-      setUser(user);
-    });
+    getUser().then(setUser);
   }, []);
 
   const changeSort = (sortSelected) => {
@@ -48,13 +41,30 @@ function App() {
     setProducts(products.sort(sortFactory(sortSelected)));
   };
 
+  const redeemProduct = (id) => {
+    const prodRedeemed = products.find((prod) => prod._id === id);
+    setUser({
+      ...user,
+      points: user.points - prodRedeemed.cost,
+      redeemHistory: [
+        ...user.redeemHistory,
+        {
+          name: prodRedeemed.name,
+          category: prodRedeemed.category,
+          price: prodRedeemed.cost,
+          imageUrl: prodRedeemed.img.url
+        }
+      ]
+    });
+  };
+
   return (
     <div className="App">
-      <UserHeader user={user.name} coins={user.points} history={user.redeemHistory} />
+      <UserHeader user={user.name} coins={user.points} historyProducts={user.redeemHistory} />
       <Banner title="Electronics" />
       <div className="container">
         <ViewerMenu sortBy={sortCriteria} sortOptions={sortOptions} changeSort={changeSort} />
-        <Products products={products} />
+        <Products availableCoins={user.points} products={products} redeemProduct={redeemProduct} />
       </div>
     </div>
   );
